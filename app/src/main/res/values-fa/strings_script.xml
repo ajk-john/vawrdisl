@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="model_opener_script">اجرای اسکریپت</string>
+    <string name="model_sheet_run_script">اجرای اسکریپت</string>
+    <string name="model_hint_local_sh">اسکریپت .sh محلی</string>
+
+    <string name="script_runner_title">اجرای اسکریپت</string>
+    <string name="script_mode_root">روت (su)</string>
+    <string name="script_mode_shell">شل (sh)</string>
+    <string name="script_use_root">اجرا با دسترسی روت (su)</string>
+    <string name="script_use_root_summary">اجرای اسکریپت در محیط شل با دسترسی روت</string>
+    <string name="script_args_label">آرگومان‌ها (اختیاری)</string>
+    <string name="script_args_hint">مثال: --verbose "arg 2"</string>
+    <string name="script_execute">اجرا</string>
+    <string name="script_rerun">اجرای مجدد</string>
+    <string name="script_stop">توقف</string>
+    <string name="script_edit">ویرایش</string>
+    <string name="script_copy_output">کپی خروجی</string>
+    <string name="script_output_copied">کپی شد</string>
+    <string name="script_output_label">خروجی</string>
+    <string name="script_status_ready">آماده اجرا</string>
+    <string name="script_status_running">در حال اجرا…</string>
+    <string name="script_status_done">کد خروج %1$d (%2$s)</string>
+    <string name="script_status_stopped">متوقف شد</string>
+    <string name="script_empty_output">(بدون خروجی)</string>
+    <string name="script_no_output_recorded">(بدون خروجی پایان یافت)</string>
+    <string name="script_root_denied">دسترسی روت رد شد یا su در دسترس نیست.</string>
+    <string name="script_cannot_read">خواندن فایل اسکریپت ممکن نیست: %1$s</string>
+</resources>

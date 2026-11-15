@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="model_opener_script">Запуск скриптов</string>
+    <string name="model_sheet_run_script">Запустить скрипт</string>
+    <string name="model_hint_local_sh">Локальный скрипт .sh</string>
+
+    <string name="script_runner_title">Запуск скрипта</string>
+    <string name="script_mode_root">ROOT (su)</string>
+    <string name="script_mode_shell">Shell (sh)</string>
+    <string name="script_use_root">Запустить с правами Root (su)</string>
+    <string name="script_use_root_summary">Выполнить скрипт в привилегированной оболочке root</string>
+    <string name="script_args_label">Аргументы (необязательно)</string>
+    <string name="script_args_hint">напр. --verbose "arg 2"</string>
+    <string name="script_execute">Выполнить</string>
+    <string name="script_rerun">Запустить снова</string>
+    <string name="script_stop">Остановить</string>
+    <string name="script_edit">Редактировать</string>
+    <string name="script_copy_output">Копировать вывод</string>
+    <string name="script_output_copied">Скопировано</string>
+    <string name="script_output_label">Вывод</string>
+    <string name="script_status_ready">Готово к запуску</string>
+    <string name="script_status_running">Выполняется…</string>
+    <string name="script_status_done">Код выхода %1$d (%2$s)</string>
+    <string name="script_status_stopped">Остановлено</string>
+    <string name="script_empty_output">(пока нет вывода)</string>
+    <string name="script_no_output_recorded">(завершено без вывода)</string>
+    <string name="script_root_denied">Доступ root отклонён или su недоступен.</string>
+    <string name="script_cannot_read">Не удаётся прочитать файл скрипта: %1$s</string>
+</resources>

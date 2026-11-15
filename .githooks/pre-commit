@@ -1,0 +1,41 @@
+#!/bin/sh
+# Pre-commit guard for ToolShear: block secrets, keystores, upstream/other-DIY leaks, and check consistency.
+set -e
+
+staged=$(git diff --cached --name-only --diff-filter=ACMR)
+if [ -z "$staged" ]; then
+    exit 0
+fi
+
+# 1. Block secret/keystore paths
+for p in $staged; do
+    case "$p" in
+        .diy-secrets/*|*.jks|*.p12|*.pfx|*.keystore|signing.properties)
+            echo "ERROR: refusing to commit secret/keystore file: $p" >&2
+            exit 1
+            ;;
+    esac
+done
+
+# 2. Check diff content (excluding docs and diy helper scripts)
+for p in $staged; do
+    case "$p" in
+        *.md|diy/*|.githooks/*)
+            continue
+            ;;
+    esac
+    if git diff --cached -- "$p" | grep -E '^\+' | grep -vE '^\+\+\+' | grep -qE 'dev\.cluvex\.strata|dev_cluvex_strata|libstrata_native|strata_native|CluvexStudio|com\.cioputlxxcc|com\.shdmmztfcqk|io\.qzxnbqm|io\.bpaqxkj|libfshqpk|libnseqsv|libdsorft|libmbksab|20-kernelSU-diy|16-kernelSU-Next'; then
+        echo "ERROR: staged diff in $p contains forbidden upstream or other-DIY token!" >&2
+        exit 1
+    fi
+done
+
+# 3. Run Python consistency check
+if command -v python >/dev/null 2>&1 && python -c "import sys; assert sys.version_info >= (3, 9)" 2>/dev/null; then
+    python diy/toolshear_diy.py check
+elif command -v python3 >/dev/null 2>&1; then
+    python3 diy/toolshear_diy.py check
+else
+    echo "ERROR: python 3.9+ not found for diy/toolshear_diy.py check" >&2
+    exit 1
+fi

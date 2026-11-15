@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="model_opener_script">脚本执行器</string>
+    <string name="model_sheet_run_script">运行脚本</string>
+    <string name="model_hint_local_sh">本地 .sh 脚本</string>
+
+    <string name="script_runner_title">运行脚本</string>
+    <string name="script_mode_root">ROOT (su)</string>
+    <string name="script_mode_shell">Shell (sh)</string>
+    <string name="script_use_root">使用 ROOT 权限执行 (su)</string>
+    <string name="script_use_root_summary">在超级用户 Shell 环境中执行此脚本</string>
+    <string name="script_args_label">命令行参数（可选）</string>
+    <string name="script_args_hint">例如：--verbose "参数"</string>
+    <string name="script_execute">执行</string>
+    <string name="script_rerun">重新执行</string>
+    <string name="script_stop">停止</string>
+    <string name="script_edit">编辑</string>
+    <string name="script_copy_output">复制输出</string>
+    <string name="script_output_copied">已复制</string>
+    <string name="script_output_label">输出</string>
+    <string name="script_status_ready">准备就绪</string>
+    <string name="script_status_running">正在运行…</string>
+    <string name="script_status_done">退出码 %1$d（%2$s）</string>
+    <string name="script_status_stopped">已停止</string>
+    <string name="script_empty_output">（暂无输出）</string>
+    <string name="script_no_output_recorded">（执行完成，无输出内容）</string>
+    <string name="script_root_denied">未授予 ROOT 权限或 su 不可用。</string>
+    <string name="script_cannot_read">无法读取脚本文件：%1$s</string>
+</resources>

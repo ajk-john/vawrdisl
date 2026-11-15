@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="model_opener_script">Script runner</string>
+    <string name="model_sheet_run_script">Run script</string>
+    <string name="model_hint_local_sh">Local .sh script</string>
+
+    <string name="script_runner_title">Run Script</string>
+    <string name="script_mode_root">ROOT (su)</string>
+    <string name="script_mode_shell">Shell (sh)</string>
+    <string name="script_use_root">Run with Root (SU) permission</string>
+    <string name="script_use_root_summary">Execute script in a privileged root shell</string>
+    <string name="script_args_label">Arguments (optional)</string>
+    <string name="script_args_hint">e.g. --verbose "arg 2"</string>
+    <string name="script_execute">Execute</string>
+    <string name="script_rerun">Run again</string>
+    <string name="script_stop">Stop</string>
+    <string name="script_edit">Edit</string>
+    <string name="script_copy_output">Copy output</string>
+    <string name="script_output_copied">Copied</string>
+    <string name="script_output_label">Output</string>
+    <string name="script_status_ready">Ready to run</string>
+    <string name="script_status_running">Running…</string>
+    <string name="script_status_done">Exit code %1$d (%2$s)</string>
+    <string name="script_status_stopped">Stopped</string>
+    <string name="script_empty_output">(no output yet)</string>
+    <string name="script_no_output_recorded">(finished with no output)</string>
+    <string name="script_root_denied">Root permission was denied or su is unavailable.</string>
+    <string name="script_cannot_read">Cannot read script file: %1$s</string>
+</resources>

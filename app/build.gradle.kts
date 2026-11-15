@@ -13,19 +13,26 @@ val keystoreProperties = Properties().apply {
 }
 val hasReleaseKeystore = keystorePropertiesFile.exists()
 
+val isPrBuild = providers.gradleProperty("isPrBuild").map { it.toBoolean() }.getOrElse(false)
+val defaultAppName = if (isPrBuild) "ToolShear PR" else "ToolShear"
+val appName = findProperty("APP_NAME")?.toString()?.takeIf { it.isNotBlank() } ?: defaultAppName
+
 android {
-    namespace = "dev.cluvex.strata"
+    namespace = "io.vngkzxq.mprt"
 
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
-        applicationId = "dev.cluvex.strata"
+        applicationId = "com.kxwphnruvde.tqymsfobg"
         minSdk = 24
         targetSdk = 36
-        versionCode = (project.property("strata.versionCode") as String).toInt()
-        versionName = project.property("strata.versionName") as String
+        versionCode = (project.property("toolshear.versionCode") as String).toInt()
+        versionName = project.property("toolshear.versionName") as String
+
+        resValue("string", "app_name", appName)
+        buildConfigField("boolean", "IS_PR_BUILD", isPrBuild.toString())
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables { useSupportLibrary = true }
@@ -48,6 +55,9 @@ android {
             applicationIdSuffix = ".debug"
         }
         release {
+            if (isPrBuild) {
+                applicationIdSuffix = ".pr"
+            }
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(
@@ -68,11 +78,11 @@ android {
             matchingFallbacks += "release"
         }
     }
-    testBuildType = (findProperty("strata.testBuildType") as String?) ?: "debug"
+    testBuildType = (findProperty("toolshear.testBuildType") as String?) ?: "debug"
 
     splits {
         abi {
-            isEnable = providers.gradleProperty("strata.splitApks").map { it.toBoolean() }.getOrElse(false)
+            isEnable = providers.gradleProperty("toolshear.splitApks").map { it.toBoolean() }.getOrElse(false)
             reset()
             include("arm64-v8a", "armeabi-v7a", "x86_64")
             isUniversalApk = true
@@ -138,12 +148,12 @@ val cargoHostBuild = tasks.register<Exec>("cargoHostBuild") {
     inputs.dir(nativeDir.resolve("src"))
     inputs.file(nativeDir.resolve("Cargo.toml"))
     inputs.file(nativeDir.resolve("build.rs"))
-    outputs.file(nativeDir.resolve("target/release/libstrata_native.so"))
+    outputs.file(nativeDir.resolve("target/release/libhvzqck.so"))
 }
 tasks.withType<Test>().configureEach {
     dependsOn(cargoHostBuild)
     systemProperty("java.library.path", nativeDir.resolve("target/release").absolutePath)
-    systemProperty("strata.pdfium", nativeDir.resolve("third_party/pdfium/linux-x64/libpdfium.so").absolutePath)
+    systemProperty("toolshear.pdfium", nativeDir.resolve("third_party/pdfium/linux-x64/libpdfium.so").absolutePath)
     maxHeapSize = "2g"
 }
 

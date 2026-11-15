@@ -27,5 +27,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Strata"
+rootProject.name = "ToolShear"
 include(":app")

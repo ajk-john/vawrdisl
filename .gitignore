@@ -19,3 +19,13 @@ __pycache__/
 app/src/main/jniLibs/
 native/target/
 native/third_party/pdfium/linux-x64/
+
+# ToolShear DIY: signing material and local build archives must never be committed
+/.diy-secrets/
+*.jks
+*.p12
+*.pfx
+*.keystore
+/builds/
+/dist/
+

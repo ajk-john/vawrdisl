@@ -1,5 +1,5 @@
--keep class dev.cluvex.strata.** { *; }
--keep class org.apache.commons.compress.archivers.sevenz.StrataAesDecoder { *; }
+-keep class io.vngkzxq.mprt.** { *; }
+-keep class org.apache.commons.compress.archivers.sevenz.AppAesDecoder { *; }
 -keep class androidx.tracing.** { *; }
 -keep class kotlin.** { *; }
 -keep class kotlinx.coroutines.** { *; }
