@@ -103,6 +103,7 @@ android {
         compose = true
         buildConfig = true
         aidl = true
+        resValues = true
     }
 
     packaging {
