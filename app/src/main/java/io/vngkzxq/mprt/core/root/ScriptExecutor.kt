@@ -264,7 +264,7 @@ class ScriptRunController {
             val qArgs = args.joinToString(" ") { RootCommands.quote(it) }
 
             return buildString {
-                append("PATH=").append(qPathEnv).append(":\"$").append("PATH\"\n")
+                append("PATH=").append(qPathEnv).append(":\"\$PATH\"\n")
                 append("export PATH\n")
                 append("SCRIPT_FILE=").append(qOrig).append('\n')
                 append("SCRIPT_DIR=").append(qDir).append('\n')
@@ -276,24 +276,24 @@ class ScriptRunController {
 
                 if (stagedTempPath != null) {
                     val qStaged = RootCommands.quote(stagedTempPath)
-                    append("/system/bin/sh ").append(qStaged).append(" \"$@\"\n")
-                    append("exit $?\n")
+                    append("/system/bin/sh ").append(qStaged).append(" \"\$@\"\n")
+                    append("exit \$?\n")
                 } else {
-                    append("_ts_tmp=$(mktemp /data/local/tmp/toolshear_XXXXXX.sh 2>/dev/null || echo /data/local/tmp/toolshear_$$.sh)\n")
+                    append("_ts_tmp=\$(mktemp /data/local/tmp/toolshear_XXXXXX.sh 2>/dev/null || echo /data/local/tmp/toolshear_\$\$.sh)\n")
                     append("if command -v tr >/dev/null 2>&1; then\n")
-                    append("  tr -d '\\r' < \"$SCRIPT_FILE\" > \"$_ts_tmp\"\n")
+                    append("  tr -d '\\r' < \"\$SCRIPT_FILE\" > \"\$_ts_tmp\"\n")
                     append("else\n")
-                    append("  cat \"$SCRIPT_FILE\" > \"$_ts_tmp\"\n")
+                    append("  cat \"\$SCRIPT_FILE\" > \"\$_ts_tmp\"\n")
                     append("fi\n")
-                    append("if [ -s \"$_ts_tmp\" ] || [ -f \"$SCRIPT_FILE\" ]; then\n")
-                    append("  /system/bin/sh \"$_ts_tmp\" \"$@\"\n")
-                    append("  _ts_rc=$?\n")
-                    append("  rm -f \"$_ts_tmp\"\n")
-                    append("  exit $_ts_rc\n")
+                    append("if [ -s \"\$_ts_tmp\" ] || [ -f \"\$SCRIPT_FILE\" ]; then\n")
+                    append("  /system/bin/sh \"\$_ts_tmp\" \"\$@\"\n")
+                    append("  _ts_rc=\$?\n")
+                    append("  rm -f \"\$_ts_tmp\"\n")
+                    append("  exit \$_ts_rc\n")
                     append("else\n")
-                    append("  rm -f \"$_ts_tmp\"\n")
-                    append("  /system/bin/sh \"$SCRIPT_FILE\" \"$@\"\n")
-                    append("  exit $?\n")
+                    append("  rm -f \"\$_ts_tmp\"\n")
+                    append("  /system/bin/sh \"\$SCRIPT_FILE\" \"\$@\"\n")
+                    append("  exit \$?\n")
                     append("fi\n")
                 }
             }

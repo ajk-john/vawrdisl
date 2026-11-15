@@ -13,6 +13,7 @@ import io.vngkzxq.mprt.core.res.ArscResource
 import io.vngkzxq.mprt.core.res.ArscTypeCount
 import io.vngkzxq.mprt.core.res.ArscValue
 import io.vngkzxq.mprt.core.root.RootManager
+import io.vngkzxq.mprt.feature.build.runBuild
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -139,7 +140,7 @@ class ArscEditorViewModel(app: Application) : AndroidViewModel(app) {
             listOf(ArscDocument.encodeStep(target.name), tr(R.string.build_step_write, target.name))
         }
         viewModelScope.launch {
-            val result = io.vngkzxq.mprt.feature.build.runBuild(
+            val result = runBuild(
                 tr(R.string.arsc_saving),
                 (e ?: target.name) + " → " + target.name,
                 plan,
