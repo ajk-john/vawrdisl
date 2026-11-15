@@ -654,6 +654,12 @@ def check_repo_rules(package: str, ns: str) -> list[str]:
         errors.append(f"missing {rel(WF_BUILD)}")
 
     # Scan repo for leaked upstream or other-DIY tokens (excluding docs/diy/git/secrets/builds).
+    skip_dirs = (
+        APP_DIR / "build",
+        APP_DIR / ".cxx",
+        NATIVE_DIR / "target",
+        NATIVE_DIR / "third_party",
+    )
     scan_roots = [APP_DIR, NATIVE_DIR, ROOT / ".github", GRADLE_PROPERTIES, SETTINGS_GRADLE, README_FILE]
     scan_files: list[Path] = []
     for item in scan_roots:
@@ -661,6 +667,8 @@ def check_repo_rules(package: str, ns: str) -> list[str]:
             scan_files.append(item)
         elif item.is_dir():
             for p in sorted(item.rglob("*")):
+                if any(sd in p.parents for sd in skip_dirs):
+                    continue
                 if p.is_file() and p.suffix.lower() not in {".png", ".webp", ".jpg", ".so", ".jar", ".ttf", ".otf", ".pdf"}:
                     scan_files.append(p)
 
